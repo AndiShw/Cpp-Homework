@@ -1,0 +1,12 @@
+########################
+# Solution to task (a) #
+########################
+
+Write down your solution to task (a) here. You can remove this line.
+
+
+########################
+# Solution to task (b) #
+########################
+
+Write down your solution to task (b) here. You can remove this line.

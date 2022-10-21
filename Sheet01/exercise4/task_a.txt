@@ -1,0 +1,5 @@
+########################
+# Solution to task (a) #
+########################
+
+Write down your solution to task (a) here. You can remove this line.

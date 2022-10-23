@@ -2,11 +2,25 @@
 # Solution to task (a) #
 ########################
 
-Write down your solution to task (a) here. You can remove this line.
+paging
+-> program used to view (but not modify) the contents of a text file moving 
+   down the file one line or one screen at a time. 
+   Some, but not all, pagers allow movement up a file (for example less)
+pager is a symlink to less, so default pager -s could be written as less -s
+Man pages first check if pager is available, else cat is used
 
+Found by reading man man and search "pager linux" in Wikipedia/Stackoverflow
 
 ########################
 # Solution to task (b) #
 ########################
 
-Write down your solution to task (b) here. You can remove this line.
+In man page of less, use 
+/ and type any keyword to make a forward search and 
+? .. for backward search
+Use n for the next occurance of the pattern
+N for the previous occurance.
+
+To jump directly to a specific section:
+man --pager='less -p ^ENVIRONMENT' less
+man -P 'less -p "     -o"' less (if looking for -o)

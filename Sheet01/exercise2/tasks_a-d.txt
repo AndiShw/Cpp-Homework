@@ -2,25 +2,40 @@
 # Solution to task (a) #
 ########################
 
-Write down your solution to task (a) here. You can remove this line.
+show info about CPU:
+cat /proc/cpuinfo 
 
+One could use lscpu to display in a slightly nicer format.
 
 ########################
 # Solution to task (b) #
 ########################
 
-Write down your solution to task (b) here. You can remove this line.
+g++ -Q -march=native --target-help 
+
 
 
 ########################
 # Solution to task (c) #
 ########################
 
-Write down your solution to task (c) here. You can remove this line.
+-m64:   Generate Code for 32-bit or 64-bit ABI  
+
+-mavx   makes GCC use the VEX encoding instead of legacy SSE for every SIMD instruction
+
+-mvzeroupper    This option instructs GCC to emit a "vzeroupper" instruction before a transfer of control flow out of the function to minimize the AVX
+                to SSE transition penalty as well as remove unnecessary "zeroupper" intrinsics.
+
+-mcx16  This option enables GCC to generate "CMPXCHG16B" instructions in 64-bit code to implement compare-and-exchange operations on 16-byte
+        aligned 128-bit objects.
+
+-msahf
+        This option enables generation of "SAHF" instructions in 64-bit code. In 64-bit mode, the "SAHF" instruction is used to optimize
+        "fmod", "drem", and "remainder" built-in functions
 
 
 ########################
 # Solution to task (d) #
 ########################
 
-Write down your solution to task (d) here. You can remove this line.
+//TODO

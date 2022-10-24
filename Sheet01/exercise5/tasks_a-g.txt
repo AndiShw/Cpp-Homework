@@ -31,8 +31,9 @@ git status
 -> to see changes
 git add xy
 -> to add a file
-OR
+
 git commit -a -m "Commit message"
+-> commit changes
 
 git push
 ->push on current branch
@@ -42,32 +43,45 @@ git push
 # Solution to task (c) #
 ########################
 
-Write down your solution to task (c) here, including all commands. You can remove this line.
+git checkout -b feature2
+-> create new branch as there was no feature2 yet
+
+Differences
+feature2 commit:
+commit cd749b3b9ce2ceb6bdd42f646696614c73eca94b (HEAD -> feature2, origin/master, origin/HEAD, master)
+
+master commit:
+commit cd749b3b9ce2ceb6bdd42f646696614c73eca94b (HEAD -> master, origin/master, origin/HEAD, feature2)
+
+being on master branch:
+git merge feature2
+(however, this does not change anything as feature2 has no different logs)
 
 
 ########################
 # Solution to task (d) #
 ########################
 
-Write down your solution to task (d) here, including all commands. You can remove this line.
+feature1 does not exist yes
 
 
 ########################
 # Solution to task (e) #
 ########################
 
-Write down your solution to task (e) here, including all commands. You can remove this line.
+no feature1
 
 
 ########################
 # Solution to task (f) #
 ########################
 
-Write down your solution to task (f) here, including all commands. You can remove this line.
+no feature1
 
 
 ########################
 # Solution to task (g) #
 ########################
 
-Write down your solution to task (g) here, including all commands. You can remove this line.
+git checkout master
+git tag -a v0.1 -m "First release"

@@ -2,32 +2,66 @@
 # Solution to task (a) #
 ########################
 
-Write down your solution to task (a) here. You can remove this line.
+Make is a versatile tool which can run commands to read files, process these files in some way 
+(such as compiling and linking them or to build executable programs and libraries from source code), 
+and write out the processed files and in a general note. 
 
+(Make is applicable to any process that involves executing arbitrary commands to transform a source file to a target result)
 
 ########################
 # Solution to task (b) #
 ########################
 
-Write down your solution to task (b) here. You can remove this line.
+Makefile
+rules:      A rule appears in the makefile and says when and how to remake certain files, called the rule’s targets (most often only one per rule)
+            and lists the other files that are the prerequisites of the target, and the recipe to use to create or update the target
+            -> any line that starts with a tab and appears in a "rule context" will be considered as part of the recipe for that rule
+
+recipes:    The recipe of a rule consists of one or more shell command lines to be executed, one at a time, in the order they appear,
+            thus they are meant to be interpreted by the shell
+            
+
+phony target:   Is a target that is not really the name of a file, rather allows to explicity tell 'make' that they're not associated with files.
+                This allows make (Makefile) to run as expected even if there is a file named like a phony target.
+                it is just a name for some commands to be executed when you make an explicit request
+                
 
 
 ########################
 # Solution to task (c) #
 ########################
 
-Write down your solution to task (c) here. You can remove this line.
+flavors
+simply expanded:    The value of a simply expanded variable is scanned once and for all, expanding any references to other variables and functions, 
+                    when the variable is defined. The actual value of the simply expanded variable is the result of expanding the text that you write and
+                    does not contain any references to other variables, but rather contains their values as of the time this variable was defined
+
+recursively expanded:   The value you specify is installed verbatim; if it contains references to other variables, 
+                        these references are expanded whenever this variable is substituted (in the course of expanding some other string)
 
 
 ########################
 # Solution to task (d) #
 ########################
 
-Write down your solution to task (d) here. You can remove this line.
+=  Lazy Set:            Normal setting of a variable, but any other variables mentioned with the value field are recursively expanded with their value 
+                        at the point at which the variable is used, not the one it had when it was declared
+
+?= Lazy Set if Absent: Setting of a variable only if it doesn't have a value. value is always evaluated when variable is accessed
+
++= Appending:           Often it is useful to add more text to the value of a variable already defined
+
+One can specify the value of a variable withoud modifying the Makefile by overwriting its value when running make
 
 
 ########################
 # Solution to task (e) #
 ########################
 
-Write down your solution to task (e) here. You can remove this line.
+automatic variables:     These variables have values computed afresh for each rule that is executed, based on the target and prerequisites of the rule
+
+$@: File name of the target of the rule. It is the name of whichever target caused the rule's commands to be run. 
+$<: The name of the first prerequisite. If the target got its commands from an implicit rule, this will be the first prerequisite added by the implicit rule
+$^: The names of all the prerequisites, with spaces between them (A target has only one prerequisite on each other file it depends on, 
+    no matter how many times each file is listed as a prerequisite. So if you list a prerequisite more than once for a target, 
+    the value of $^ contains just one copy of the name.)

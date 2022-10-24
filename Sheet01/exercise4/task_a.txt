@@ -2,4 +2,18 @@
 # Solution to task (a) #
 ########################
 
-Write down your solution to task (a) here. You can remove this line.
+C++20 standard:
+set (CMAKE_CXX_STANDARD 20) which will result in -std:c++20 compiler flag
+
+identify 
+system (Unix, mac, win): CMAKE_HOST_SYSTEM_NAME (set to the output of uname -s)
+
+compiler support flag -march=native:
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-march=native" COMPILER_SUPPORTS_MARCH_NATIVE)
+if(COMPILER_SUPPORTS_MARCH_NATIVE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
+endif()
+
+system has program 'sed': find_program (<VAR> name1 [path1 path2 ...])
+

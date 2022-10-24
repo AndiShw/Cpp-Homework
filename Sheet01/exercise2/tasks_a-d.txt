@@ -12,7 +12,9 @@ One could use lscpu to display in a slightly nicer format.
 ########################
 
 g++ -Q -march=native --target-help 
+gcc -Q -march=native --help=target
 
+Was ist der unterschied zu --target-help und --help=target?
 
 
 ########################
@@ -29,8 +31,7 @@ g++ -Q -march=native --target-help
 -mcx16  This option enables GCC to generate "CMPXCHG16B" instructions in 64-bit code to implement compare-and-exchange operations on 16-byte
         aligned 128-bit objects.
 
--msahf
-        This option enables generation of "SAHF" instructions in 64-bit code. In 64-bit mode, the "SAHF" instruction is used to optimize
+-msahf  This option enables generation of "SAHF" instructions in 64-bit code. In 64-bit mode, the "SAHF" instruction is used to optimize
         "fmod", "drem", and "remainder" built-in functions
 
 
@@ -38,4 +39,7 @@ g++ -Q -march=native --target-help
 # Solution to task (d) #
 ########################
 
-//TODO
+
+-march=native is a destructive flag. It makes the binary possible not compatible on a lot of hardware (basically any CPU that is not a direct descendent of the one used for compilation). 
+Using -march=native enables all instruction subsets supported by the local machine (hence the result might not run on different machines)
+Using -mtune=native produces code optimized for the local machine under the constraints of the selected instruction set. 

@@ -1,1 +1,16 @@
-# Add your CMakeLists.txt for task (b) here
+cmake_minimum_required(VERSION 3.13)
+project(simple_example)
+set(CMAKE_CXX_STANDARD 20)
+set(SOURCE_FILES main.cpp)
+add_executable(simple_example ${SOURCE_FILES})
+
+set(ENABLE_NATIVE_ARCH OFF)
+set(NATIVE_ARCH_FLAGS = "") //flags added as user input
+
+
+sif(ENABLE_NATIVE_ARCH ON)
+    set(CMAKE_CXX_FLAGS (list (GET NATIVE_ARCH_FLAGS 0))
+    list(POP_FRONT(NATIVE_ARCH_FLAGS)
+eńdif()
+
+//TODO make this again lul

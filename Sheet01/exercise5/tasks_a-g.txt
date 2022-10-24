@@ -2,7 +2,8 @@
 # Solution to task (a) #
 ########################
 
-Write down your solution to task (a) here, including all commands. You can remove this line.
+git clone git@gitlab.rz.uni-bamberg.de:andreas-franz.schwab/sheet01-git-exercise.git
+-> Clones the project
 
 
 ########################

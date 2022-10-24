@@ -4,12 +4,38 @@
 
 git clone git@gitlab.rz.uni-bamberg.de:andreas-franz.schwab/sheet01-git-exercise.git
 -> Clones the project
+-> Projekt in VS-Code öffnen
+
+git branch -a
+-> shows all local and remote branches. 
+All Branches in this Project:
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+git rev-parse --abbrev-ref HEAD
+-> show my current checkout branch
+
+git tag
+-> does not show an output somehow (also git tag -n)
 
 ########################
 # Solution to task (b) #
 ########################
 
-Write down your solution to task (b) here, including all commands. You can remove this line.
+
+In VS-Code: STRG+SHIFT+G, enter a Commit text ("Aufgabe 5b") and STRG+ENTER to push
+
+Via Terminal:
+git status 
+-> to see changes
+git add xy
+-> to add a file
+OR
+git commit -a -m "Commit message"
+
+git push
+->push on current branch
 
 
 ########################

@@ -4,20 +4,24 @@
 
 git clone git@gitlab.rz.uni-bamberg.de:andreas-franz.schwab/sheet01-git-exercise.git
 -> Clones the project
--> Projekt in VS-Code öffnen
 
 git branch -a
 -> shows all local and remote branches. 
 All Branches in this Project:
 * master
   remotes/origin/HEAD -> origin/master
+  remotes/origin/feature1
+  remotes/origin/feature2
   remotes/origin/master
 
+  Default branch after cloning is master
+ 
+
 git rev-parse --abbrev-ref HEAD
--> show my current checkout branch
+-> show only my current checkout branch
 
 git tag
--> does not show an output somehow (also git tag -n)
+-> (or add -l. Currently empty for master branch)
 
 ########################
 # Solution to task (b) #
@@ -43,40 +47,82 @@ git push
 # Solution to task (c) #
 ########################
 
-git checkout -b feature2
--> create new branch as there was no feature2 yet
+git checkout feature2
+-> change to branch feature2
+
 
 Differences
-feature2 commit:
-commit cd749b3b9ce2ceb6bdd42f646696614c73eca94b (HEAD -> feature2, origin/master, origin/HEAD, master)
+feature2:
+commit 806f3b496514dacc9125cf1d178a0fed5ba0147a (HEAD -> feature2, origin/feature2)
+Author: User A <usera@example.com>
+Date:   Wed Apr 17 13:14:48 2019 +0200
+
+    Added copyright
 
 master commit:
-commit cd749b3b9ce2ceb6bdd42f646696614c73eca94b (HEAD -> master, origin/master, origin/HEAD, feature2)
+commit ccaa16f1568645f34529c83b69a85cbc16b6d9fd (HEAD -> master, origin/master, origin/HEAD)
+Author: AndiShw <andreas-franz.schwab@stud.uni-bamberg.de>
+Date:   Thu Nov 3 13:43:05 2022 +0100
+
+    Exercise 5
+
+commit e7d8c1785c2808e7c588822377b1e5956fbe1b62
+
+Both have the Initial commit.
+
 
 being on master branch:
 git merge feature2
-(however, this does not change anything as feature2 has no different logs)
+(Edit and save commit message if needed)
 
 
 ########################
 # Solution to task (d) #
 ########################
 
-feature1 does not exist yes
+git checkout feature1
+
+git whatchanged (some detail about what changed)
+git whatchanged  --pretty=format:"%h %s" (for a nicer and easier to read output)
+git diff --stat <sha1> <sha2> shows changes between two commits
+    -||-        <branch>      allows to compare to another branch
+
+
+To change commit history with an interactive view: 
+git rebase -i 
+
+To combine all test.cpp changes -> squash commits to one
+(The latest commit, 7f1192f Fixes, affects main.cpp AND test.cpp, 
+I am not sure in which category to put thus I tried to add this commit only to test.cpp)
+
+git rebase -i 
+Add to script:
+pick 7f1192f Fixes
+squash e8e1b14 Small fix
+squash 4d9f713 Added test.cpp
+(From what i read, this should combine all changes on test.cpp to a single commit where 
+I would then delete every but the Added test.cpp messages - however, this does not work es expected and I do not know why)
+
+The same should work with the corresponding changes for all main.cpp commits, but I get the same problems as before
+
+As a remark, how should feature1 contain 3 commits in the end when the task was to combine all changes to either test or main?
+
 
 
 ########################
 # Solution to task (e) #
 ########################
 
-no feature1
+It fails as we edited the Main Branch earlier in this exercise and thus there are differences on both branches.
+To overcome this problem: 
+//TODO
 
 
 ########################
 # Solution to task (f) #
 ########################
 
-no feature1
+//TODO
 
 
 ########################

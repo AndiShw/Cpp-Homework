@@ -101,4 +101,4 @@ _GLOBAL__sub_I_main:
         ret
 
 
-the aim of -O1 optimization is to generate minimum size code by setting the corresponding flags.
+-O0 does no optimization at all while the aim of -O1 optimization is to generate minimum size code by setting the corresponding flags.

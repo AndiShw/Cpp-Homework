@@ -2,18 +2,103 @@
 # Solution to task (a) #
 ########################
 
-Write down your solution to task (a) here. You can remove this line.
-
+Undefined Behavior allows the program to do anything after execution.
+Including crashing of the program, change access rights, corrupt data, etc.
+Thus it is crucial to prevent.
 
 ########################
 # Solution to task (b) #
 ########################
 
-Write down your solution to task (b) here. You can remove this line.
+#include<iostream>
+
+int main() {
+    int n;
+    std::cout << "standard n value: " <<  n << std::endl; //to see the 'standard' value of n
+    if(n > 0){
+	std::cout << "return value for n > 0: " << n*2 << std::endl; //display the returning value of n
+        return n*2;
+    } else {
+	std::cout << "return value for n < 0: " <<  n-1 << std::endl; //display the returning value of n
+        return n-1;
+    }
+}
+
+Compiling this function with: g++ -O0 -o calc.exe calc.cpp
+and running via: ./calc.exe
+results in the output of: 43888, 44136, 44050, ... (always a different value for n)
+
+Compiling this function with: g++ -O1 -o calc.exe calc.cpp
+and running via: ./calc.exe
+results in the output of: -1 (every time, as default n is always 0)
+
 
 
 ########################
 # Solution to task (c) #
 ########################
+I removed all std::cout statements for the assembly generation
 
-Write down your solution to task (c) here. You can remove this line.
+with -O0
+main:
+        push    rbp
+        mov     rbp, rsp
+        cmp     DWORD PTR [rbp-4], 0
+        jle     .L2
+        mov     eax, DWORD PTR [rbp-4]
+        add     eax, eax
+        jmp     .L3
+.L2:
+        mov     eax, DWORD PTR [rbp-4]
+        sub     eax, 1
+.L3:
+        pop     rbp
+        ret
+__static_initialization_and_destruction_0(int, int):
+        push    rbp
+        mov     rbp, rsp
+        sub     rsp, 16
+        mov     DWORD PTR [rbp-4], edi
+        mov     DWORD PTR [rbp-8], esi
+        cmp     DWORD PTR [rbp-4], 1
+        jne     .L6
+        cmp     DWORD PTR [rbp-8], 65535
+        jne     .L6
+        mov     edi, OFFSET FLAT:_ZStL8__ioinit
+        call    std::ios_base::Init::Init() [complete object constructor]
+        mov     edx, OFFSET FLAT:__dso_handle
+        mov     esi, OFFSET FLAT:_ZStL8__ioinit
+        mov     edi, OFFSET FLAT:_ZNSt8ios_base4InitD1Ev
+        call    __cxa_atexit
+.L6:
+        nop
+        leave
+        ret
+_GLOBAL__sub_I_main:
+        push    rbp
+        mov     rbp, rsp
+        mov     esi, 65535
+        mov     edi, 1
+        call    __static_initialization_and_destruction_0(int, int)
+        pop     rbp
+        ret
+
+
+
+with -O1:
+main:
+        mov     eax, -1
+        ret
+_GLOBAL__sub_I_main:
+        sub     rsp, 8
+        mov     edi, OFFSET FLAT:_ZStL8__ioinit
+        call    std::ios_base::Init::Init() [complete object constructor]
+        mov     edx, OFFSET FLAT:__dso_handle
+        mov     esi, OFFSET FLAT:_ZStL8__ioinit
+        mov     edi, OFFSET FLAT:_ZNSt8ios_base4InitD1Ev
+        call    __cxa_atexit
+        add     rsp, 8
+        ret
+
+
+the aim of -O1 optimization is to generate minimum size code by setting the corresponding flags.

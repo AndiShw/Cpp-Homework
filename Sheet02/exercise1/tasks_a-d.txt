@@ -2,25 +2,51 @@
 # Solution to task (a) #
 ########################
 
-Write down your solution to task (a) here. You can remove this line.
-
+glvalue
+prvalue
+xvalue
+lvalue
+rvalue
 
 ########################
 # Solution to task (b) #
 ########################
 
-Write down your solution to task (b) here. You can remove this line.
+unsigned i = 0  ->  init-statemnt condition
+j = 0           ->  init-statemnt condition
+i < 10          ->  statement condition
+++i             ->  iteration expression
+j *= 2          ->  iteration expression
 
+Comma operator:
+introduces a sequence point, which means that the expression a+b, c(), d 
+is s guaranteed to have its three subexpressions (a+b, c() and d) evaluated in order.
+Also, this operator will always yield the last value in the comma separated list, so
+it is basically a binary operator that evaluates the left hand value but discards it, 
+then evaluates the right hand value and returns it.
+In this example I thinnk the comma in ++i, j *= 2 can be seen as an operator 
 
 ########################
 # Solution to task (c) #
 ########################
 
-Write down your solution to task (c) here. You can remove this line.
 
+numeric promotion is the conversion of a smaller numeric type to a larger numeric type, so that integer and floating-point operations may take place
+    byte, char, and short values are converted to int values, 
+    The int values are also converted to long values,
+  
+
+numeric conversion may change the values, with potential loss of precision (allows additional type conversions)
+    Converting an integral type to any other integral type (excluding integral promotions - as e.g.: short s = 3; //int to short)
+    Converting a floating point type to any integral type (e.g.: int i = 3.5; //double to int)
+
+Note that all other conversions are not promotions; for example, overload resolution chooses char -> int (promotion) over char -> short (conversion). 
 
 ########################
 # Solution to task (d) #
 ########################
 
-Write down your solution to task (d) here. You can remove this line.
+print hexadecimal numbers               -> std::cout << std::hex << 'value to represent as hex'; (To go back to decimal after hex is printed use this: std::cout << std::hex << num << std::dec << std::endl; //else, Hex will stay activated)
+print numbers with a fixed width        -> std::setw('value for width')
+print numbers with leading zeroes       -> std::setfill('0') (+ std::setw('value for width') to add the amount of zeroes wanted)
+right align numbers with fixed width    -> std::right (add with depending to the number wanted)

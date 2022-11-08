@@ -284,40 +284,37 @@ void fibonacciProgram(unsigned n) {
     // irgnedwie müssten die Anweisungen von unten jetzt eingelesen werden.
     // laut der Mail soll jedoch keine Liste an befehlen übergeben werden,
     // deshalb sollte das doch irgendwie wie unten funktionieren, oder?
-
+    // so wir jetzt ist es ne Dauerschleife
+    /*
+    
     runVM();
-    std::cout << "10 B 0\n"
-              << std::endl; // B = 0
-    std::cout << "10 C 1\n"
-              << std::endl; // C = 1
+
+    std::string strinit1 = "10 B 0\n"; // B = 0
+    std::string strinit2 = "10 C 1\n"; // C = 1
+    std::cin >> strinit1 >> strinit2;
+
+    std::string str1 = "20 C\n"; // load C into A
+    std::string str2 = "50\n"; // add A and B
+    std::string str3 = "21 D\n"; // store A in D
+    std::string str4 = "20 C\n"; // load C in A
+    std::string str5 = "21 B\n"; // Store A in B
+    std::string str6 = "20 D\n"; // load D in A
+    std::string str7 = "21 C\n"; // store A in C
+    std::string str8 = "20 C\n"; // store C in A
+    std::string str9 = "0"; //end and return result A
 
     for (unsigned i = 1; i <= n; ++i) {
-        std::cout << "20 C\n"
-                  << std::endl; // load C into A
-        std::cout << "50\n"
-                  << std::endl; // add A and B
-        std::cout << "21 D\n"
-                  << std::endl; // store A in D
-        std::cout << "20 C\n"
-                  << std::endl; // load C in A
-        std::cout << "21 B\n"
-                  << std::endl; // Store A in B
-        std::cout << "20 D\n"
-                  << std::endl; // load D in A
-        std::cout << "21 C\n"
-                  << std::endl; // store A in C
-        std::cout << "20 B\n"
-                  << std::endl; // store B in A
-        std::cout << "0\n"; //end and return result A
-
-        /*
+        std::cin >> str1 >> str2 >> str3 >> str4 >> str5 >> str6 >> str7 >> str8;
+        
         for..
             D = B + C
             B = C
             C = D
         endfor
-        */
+        
     }
+    std::cin >> str9;
+*/
 }
 } // namespace simplevm
 //---------------------------------------------------------------------------

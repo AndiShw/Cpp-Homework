@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -Wpedantic -Werror   CMakeFiles/simplevm.dir/main.cpp.o  -o simplevm  libsimplevm_core.a 

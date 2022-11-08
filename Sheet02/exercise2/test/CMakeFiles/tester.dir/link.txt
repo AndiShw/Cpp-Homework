@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Wextra -Wpedantic -Werror   CMakeFiles/tester.dir/tester.cpp.o CMakeFiles/tester.dir/test_simplevm.cpp.o  -o tester  ../simplevm/libsimplevm_core.a /usr/lib/x86_64-linux-gnu/libgtest.a -lpthread 

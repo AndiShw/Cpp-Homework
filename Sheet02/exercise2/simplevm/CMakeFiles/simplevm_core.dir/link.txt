@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsimplevm_core.a  CMakeFiles/simplevm_core.dir/simplevm.cpp.o
+/usr/bin/ranlib libsimplevm_core.a

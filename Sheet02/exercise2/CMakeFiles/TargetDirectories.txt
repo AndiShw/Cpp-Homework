@@ -1,0 +1,11 @@
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/CMakeFiles/rebuild_cache.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/CMakeFiles/edit_cache.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/CMakeFiles/lint.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/CMakeFiles/rebuild_cache.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/CMakeFiles/edit_cache.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/CMakeFiles/simplevm.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/CMakeFiles/lint_simplevm_core.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/CMakeFiles/simplevm_core.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test/CMakeFiles/rebuild_cache.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test/CMakeFiles/edit_cache.dir
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test/CMakeFiles/tester.dir

@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm",
+  "command": "/usr/bin/c++   -I/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2   -Wall -Wextra -Wpedantic -Werror   -std=gnu++2a -o CMakeFiles/simplevm.dir/main.cpp.o -c /home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/main.cpp",
+  "file": "/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/main.cpp"
+},
+{
+  "directory": "/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm",
+  "command": "/usr/bin/c++   -I/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2   -Wall -Wextra -Wpedantic -Werror   -std=gnu++2a -o CMakeFiles/simplevm_core.dir/simplevm.cpp.o -c /home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/simplevm.cpp",
+  "file": "/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/simplevm.cpp"
+},
+{
+  "directory": "/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test",
+  "command": "/usr/bin/c++   -I/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2   -Wall -Wextra -Wpedantic -Werror   -std=gnu++2a -o CMakeFiles/tester.dir/tester.cpp.o -c /home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test/tester.cpp",
+  "file": "/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test/tester.cpp"
+},
+{
+  "directory": "/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test",
+  "command": "/usr/bin/c++   -I/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2   -Wall -Wextra -Wpedantic -Werror   -std=gnu++2a -o CMakeFiles/tester.dir/test_simplevm.cpp.o -c /home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test/test_simplevm.cpp",
+  "file": "/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test/test_simplevm.cpp"
+}
+]

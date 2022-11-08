@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/simplevm.cpp
+simplevm/simplevm.hpp
+/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/simplevm/simplevm/simplevm.hpp
+iostream
+-
+sstream
+-
+
+simplevm/simplevm.hpp
+cstdint
+-
+

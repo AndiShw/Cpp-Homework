@@ -20,10 +20,6 @@ utility
 gtest/gtest.h
 -
 
-/home/andi/Desktop/C++/Cpp-Homework/Sheet02/exercise2/test/tester.cpp
-gtest/gtest.h
--
-
 simplevm/simplevm.hpp
 cstdint
 -

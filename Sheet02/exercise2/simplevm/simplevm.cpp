@@ -1,13 +1,20 @@
 #include "simplevm/simplevm.hpp"
 #include <iostream>
 #include <sstream>
+#include <limits.h>
+
+//TODO: REFRACTOR!!!
 
 //---------------------------------------------------------------------------
 namespace simplevm {
 // Run the VM. Return the value from register A when the execution finished.
 int32_t runVM() {
-    int32_t A, B, C, D;
-    float Y, X;
+    int32_t A = 0;
+    int32_t B = 0;
+    int32_t C = 0;
+    int32_t D = 0;
+    float X = 0;
+    float Y = 0;
 
     int i, vi; //opcode i //value iimm
     float vf; //value fimm
@@ -69,11 +76,22 @@ int32_t runVM() {
                     break;
 
                 case 11:
-                    //std::cout << "opcode 11 - movf" << std::endl;
+                    // std::cout << "opcode 11 - movf" << std::endl;
+                    // jeder Float muss bei mir einen . haben, sonst wird er nicht
+                    // erkannt. Da kein typeof() exisitiert wüsst ich nicht wie man sonst
+                    // einen Float identifizieren könnte.
                     if (c == 'X') {
-                        X = vf;
+                        if (vf != 0) {
+                            X = vf;
+                        } else {
+                            X = vi;
+                        }
                     } else if (c == 'Y') {
-                        Y = vf;
+                        if (vf != 0) {
+                            Y = vf;
+                        } else {
+                            Y = vi;
+                        }
                     }
                     break;
                 case 20:
@@ -132,42 +150,80 @@ int32_t runVM() {
                 case 40: {
                     //std::cout << "opcode 40 - itof" << std::endl;
                     float z = float(A);
+                    A = 0;
                     X = z;
                 } break;
 
                 case 41: {
                     //std::cout << "opcode 41 - ftoi" << std::endl;
                     int z = int(X);
+                    X = 0;
                     A = z;
                 } break;
 
                 case 50:
                     //std::cout << "opcode 50 - addi" << std::endl;
                     //2147483648 -2147483648
-                    A = A + B;
+                    if (((B > 0) && (A > (INT32_MAX - B))) ||
+                        ((B < 0) && (A < (INT32_MIN - B)))) {
+                        std::cout << "Over - /Underflow" << std::endl;
+                        A = A + B;
+                    } else {
+                        A = A + B;
+                    }
                     break;
+
                 case 51:
                     //std::cout << "opcode 51 - subi" << std::endl;
-                    if (A >= B) {
+                    if (((B > 0) && (A < (INT32_MIN + B))) ||
+                        ((B < 0) && (A > (INT32_MAX + B)))) {
+                        std::cout << "Over - /Underflow" << std::endl;
+                        A = A - B;
+                    } else {
                         A = A - B;
                     }
                     break;
 
                 case 52:
                     //std::cout << "opcode 52 - rsubi" << std::endl;
-                    if (B >= A) {
+                    if (((B > 0) && (A < (INT32_MIN + B))) ||
+                        ((B < 0) && (A > (INT32_MAX + B)))) {
+                        std::cout << "Over - /Underflow" << std::endl;
+                        A = B - A;
+                    } else {
                         A = B - A;
                     }
                     break;
 
-                case 53:
+                case 53: {
                     //std::cout << "opcode 53 - muli" << std::endl;
+                    if (A > 0) { /* si_a is positive */
+                        if (B > 0) { /* si_a and si_b are positive */
+                            if (A > (INT_MAX / B)) {
+                                /* Handle error */
+                            }
+                        } else { /* si_a positive, si_b nonpositive */
+                            if (B < (INT_MIN / A)) {
+                                /* Handle error */
+                            }
+                        } /* si_a positive, si_b nonpositive */
+                    } else { /* si_a is nonpositive */
+                        if (B > 0) { /* si_a is nonpositive, si_b is positive */
+                            if (A < (INT_MIN / B)) {
+                                /* Handle error */
+                            }
+                        } else { /* si_a and si_b are nonpositive */
+                            if ((A != 0) && (B < (INT_MAX / A))) {
+                                /* Handle error */
+                            }
+                        } /* End if si_a and si_b are nonpositive */
+                    } /* End if si_a is nonpositive */
                     A = A * B;
-                    break;
+                } break;
 
                 case 54:
                     //std::cout << "opcode 54 - divi" << std::endl;
-                    if (B != 0) {
+                    if (!((B == 0) || ((A == LONG_MIN) && (B == -1)))) {
                         int32_t C = A;
                         A = A / B;
                         B = C % B;
@@ -181,11 +237,10 @@ int32_t runVM() {
                     //std::cout << "opcode 60 - addf" << std::endl;
                     X = X + Y;
                     break;
+
                 case 61:
                     //std::cout << "opcode 61 - addf" << std::endl;
-                    if (X > Y) {
-                        X = X - Y;
-                    }
+                    X = X - Y;
                     break;
 
                 case 62:
@@ -195,7 +250,7 @@ int32_t runVM() {
 
                 case 63:
                     //std::cout << "opcode 63 - divf" << std::endl;
-                    if (Y != 0) {
+                    if (!((Y == 0) || ((X == LONG_MIN) && (Y == -1)))) {
                         X = X / Y;
                     } else {
                         std::cout << "division by 0" << std::endl;

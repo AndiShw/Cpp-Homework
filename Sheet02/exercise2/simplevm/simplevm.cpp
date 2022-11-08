@@ -3,7 +3,7 @@
 #include <sstream>
 #include <limits.h>
 
-//TODO: REFRACTOR!!!
+//TODO: REFRACTOR!!1!
 
 //---------------------------------------------------------------------------
 namespace simplevm {
@@ -16,7 +16,7 @@ int32_t runVM() {
     float X = 0;
     float Y = 0;
 
-    int i, vi; //opcode i //value iimm
+    int32_t i, vi; //opcode i //value iimm
     float vf; //value fimm
     char c; //Register
 
@@ -79,7 +79,8 @@ int32_t runVM() {
                     // std::cout << "opcode 11 - movf" << std::endl;
                     // jeder Float muss bei mir einen . haben, sonst wird er nicht
                     // erkannt. Da kein typeof() exisitiert wüsst ich nicht wie man sonst
-                    // einen Float identifizieren könnte.
+                    // einen Float identifizieren könnte
+                    // -> verwendet iimm, falls kein float gegeben
                     if (c == 'X') {
                         if (vf != 0) {
                             X = vf;
@@ -94,6 +95,7 @@ int32_t runVM() {
                         }
                     }
                     break;
+
                 case 20:
                     //std::cout << "opcode 20 - loada" << std::endl;
                     if (c == 'A') {
@@ -106,6 +108,7 @@ int32_t runVM() {
                         A = D;
                     }
                     break;
+
                 case 21:
                     //std::cout << "opcode 21 - storea" << std::endl;
                     if (c == 'A') {
@@ -118,12 +121,14 @@ int32_t runVM() {
                         D = A;
                     }
                     break;
+
                 case 22: {
                     //std::cout << "opcode 22 - swapab" << std::endl;
-                    int z = A;
+                    int32_t z = A;
                     A = B;
                     B = z;
                 } break;
+
                 case 30:
                     //std::cout << "opcode 30 - loadx" << std::endl;
                     if (c == 'X') {
@@ -141,12 +146,14 @@ int32_t runVM() {
                         Y = X;
                     }
                     break;
+
                 case 32: {
                     //std::cout << "opcode 32 - swapxy" << std::endl;
                     float z = X;
                     X = Y;
                     Y = z;
                 } break;
+
                 case 40: {
                     //std::cout << "opcode 40 - itof" << std::endl;
                     float z = float(A);
@@ -156,14 +163,18 @@ int32_t runVM() {
 
                 case 41: {
                     //std::cout << "opcode 41 - ftoi" << std::endl;
-                    int z = int(X);
+                    int32_t z = int32_t(X);
                     X = 0;
                     A = z;
                 } break;
 
                 case 50:
-                    //std::cout << "opcode 50 - addi" << std::endl;
-                    //2147483648 -2147483648
+                    // std::cout << "opcode 50 - addi" << std::endl;
+                    // was meint "All arithmetic integer instructions
+                    // should wrap their values on over- and underflow?"
+                    // Wie soll sich das Programm bei einem Fehlerfall verhalten?
+                    // Wenn man den Overflow verhindert stimmt das Ergebnis nicht
+                    // mit dem vom beigefügten Google-Test und der Test wird falsch.
                     if (((B > 0) && (A > (INT32_MAX - B))) ||
                         ((B < 0) && (A < (INT32_MIN - B)))) {
                         std::cout << "Over - /Underflow" << std::endl;
@@ -266,21 +277,47 @@ int32_t runVM() {
 
 // Print a VM program that calculates the nth fibonacci number.
 void fibonacciProgram(unsigned n) {
-    int t1 = 0, t2 = 1, nextTerm = 0;
-
-    // displays the first two terms which is always 0 and 1
-    std::cout << "Fibonacci Series: " << t1 << ", " << t2 << ", ";
-
-    nextTerm = t1 + t2;
-
-    while (n) {
-        std::cout << nextTerm << ", ";
-        t1 = t2;
-        t2 = nextTerm;
-        nextTerm = t1 + t2;
+    if (n < 3) {
+        std::cout << 1 << std::endl;
     }
 
-    //---------------------------------------------------------------------------
+    // irgnedwie müssten die Anweisungen von unten jetzt eingelesen werden.
+    // laut der Mail soll jedoch keine Liste an befehlen übergeben werden,
+    // deshalb sollte das doch irgendwie wie unten funktionieren, oder?
+
+    runVM();
+    std::cout << "10 B 0\n"
+              << std::endl; // B = 0
+    std::cout << "10 C 1\n"
+              << std::endl; // C = 1
+
+    for (unsigned i = 1; i <= n; ++i) {
+        std::cout << "20 C\n"
+                  << std::endl; // load C into A
+        std::cout << "50\n"
+                  << std::endl; // add A and B
+        std::cout << "21 D\n"
+                  << std::endl; // store A in D
+        std::cout << "20 C\n"
+                  << std::endl; // load C in A
+        std::cout << "21 B\n"
+                  << std::endl; // Store A in B
+        std::cout << "20 D\n"
+                  << std::endl; // load D in A
+        std::cout << "21 C\n"
+                  << std::endl; // store A in C
+        std::cout << "20 B\n"
+                  << std::endl; // store B in A
+        std::cout << "0\n"; //end and return result A
+
+        /*
+        for..
+            D = B + C
+            B = C
+            C = D
+        endfor
+        */
+    }
 }
 } // namespace simplevm
 //---------------------------------------------------------------------------

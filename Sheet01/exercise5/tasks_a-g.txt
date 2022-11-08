@@ -96,15 +96,16 @@ To combine all test.cpp changes -> squash commits to one
 I am not sure in which category to put thus I tried to add this commit only to test.cpp)
 
 git rebase -i 
-Add to script:
+//Add to script:
 pick 7f1192f Fixes
 squash e8e1b14 Small fix
 squash 4d9f713 Added test.cpp
+
 (From what i read, this should combine all changes on test.cpp to a single commit where 
-I would then delete every but the Added test.cpp messages - however, this does not work es expected and I do not know why)
+I would then delete every but the added test.cpp messages 
+    - however, this does not work es expected and I do not know why
 
 The same should work with the corresponding changes for all main.cpp commits, but I get the same problems as before
-
 As a remark, how should feature1 contain 3 commits in the end when the task was to combine all changes to either test or main?
 
 
